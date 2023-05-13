@@ -19,9 +19,6 @@ public class FIFO extends Algorithm {
                 }
                 memory.add(request);
                 pageFaults++;
-            } else {
-                memory.remove(request);
-                memory.add(request);
             }
         }
 
