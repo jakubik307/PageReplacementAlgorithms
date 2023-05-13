@@ -1,9 +1,12 @@
+import Algorithm.Algorithm;
+import Algorithm.FIFO;
+import Algorithm.LRU;
+import Request.Request;
+
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Algorithm algorithm;
-
         //Create 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5 request array
         ArrayList<Request> queue2 = new ArrayList<>();
         queue2.add(new Request(1, 1));
@@ -25,8 +28,20 @@ public class Main {
         int thrashingThreshold = 5;
         ArrayList<Request> queue = Generator.generateRequestQueue(1000, 3, 5, 20, 30, 5);
 
+
+    }
+
+    private void test(ArrayList<Request> queue, int frames, int thrashingThreshold) {
+        Algorithm algorithm;
+
         //FIFO
         algorithm = new FIFO();
-        algorithm.simulate(queue2, frames, thrashingThreshold);
+        algorithm.simulate(queue, frames, thrashingThreshold);
+
+        //LRU
+        algorithm = new LRU();
+        algorithm.simulate(queue, frames, thrashingThreshold);
+
+
     }
 }

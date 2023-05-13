@@ -1,4 +1,7 @@
+package Algorithm;
+
 import java.util.ArrayList;
+import Request.Request;
 
 public abstract class Algorithm {
     protected ArrayList<Request> queue;

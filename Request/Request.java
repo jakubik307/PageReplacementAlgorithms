@@ -1,3 +1,5 @@
+package Request;
+
 public class Request {
     int page;
     int id;
