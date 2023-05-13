@@ -1,7 +1,4 @@
-import Algorithm.Algorithm;
-import Algorithm.FIFO;
-import Algorithm.LRU;
-import Algorithm.RAND;
+import Algorithm.*;
 import Request.Request;
 
 import java.util.ArrayList;
@@ -36,6 +33,10 @@ public class Main {
 
         //FIFO
         algorithm = new FIFO();
+        algorithm.simulate(queue, frames, thrashingThreshold);
+
+        //OPT
+        algorithm = new OPT();
         algorithm.simulate(queue, frames, thrashingThreshold);
 
         //LRU
