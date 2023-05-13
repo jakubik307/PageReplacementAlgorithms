@@ -1,7 +1,8 @@
 package Algorithm;
 
-import java.util.ArrayList;
 import Request.Request;
+
+import java.util.ArrayList;
 
 public abstract class Algorithm {
     protected ArrayList<Request> queue;
@@ -21,6 +22,7 @@ public abstract class Algorithm {
         System.out.println("-".repeat(this.getClass().getSimpleName().length()));
         System.out.println("Page faults: " + pageFaults);
         System.out.println("Thrashing: " + thrashing);
+        System.out.println();
     }
 
     protected void deepCopyQueue(ArrayList<Request> originalQueue) {
