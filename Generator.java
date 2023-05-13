@@ -1,9 +1,12 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 @SuppressWarnings("unused")
 public class Generator {
 
-    public static List<Request> generateRequestQueue(int simulationSize, int minLocalitySize, int maxLocalitySize, int minLocalityLength, int maxLocalityLength, int pages) throws IllegalArgumentException {
+    public static ArrayList<Request> generateRequestQueue(int simulationSize, int minLocalitySize, int maxLocalitySize, int minLocalityLength, int maxLocalityLength, int pages) throws IllegalArgumentException {
         if (!isCorrect(simulationSize, minLocalitySize, maxLocalitySize, minLocalityLength, maxLocalityLength, pages))
             throw new IllegalArgumentException();
 
@@ -19,17 +22,16 @@ public class Generator {
             int localitySize = random.nextInt(minLocalitySize, maxLocalitySize);
             int localityLength = random.nextInt(minLocalityLength, maxLocalityLength);
 
-            Set<Integer> randomPages = new HashSet<>();
-            while (randomPages.size() < localitySize) {
-            }
+            List<Integer> randomPages = generateLocalityArray(pages, localitySize);
 
             for (int i = 0; i < localityLength; i++) {
-
+                Request request = new Request(randomPages.get(random.nextInt(localitySize)), createdRequests);
+                queue.add(request);
+                createdRequests++;
             }
         }
-
-
-        return new ArrayList<>();
+        //return first simulationSize elements
+        return new ArrayList<>(queue.subList(0, simulationSize));
     }
 
     private static boolean isCorrect(int simulationSize, int minLocalitySize, int maxLocalitySize, int minLocalityLength, int maxLocalityLength, int pages) {
@@ -42,14 +44,18 @@ public class Generator {
         return true;
     }
 
-    private static HashSet<Integer> generateLocalitySet(int maxPages, int size) {
+    private static ArrayList<Integer> generateLocalityArray(int maxPages, int size) {
+        ArrayList<Integer> result = new ArrayList<>();
         ArrayList<Integer> numbers = new ArrayList<>(maxPages);
         for (int i = 1; i <= maxPages; i++) {
             numbers.add(i);
         }
         Collections.shuffle(numbers);
 
+        for (int i = 0; i < size; i++) {
+            result.add(numbers.get(i));
+        }
 
-        return new HashSet<>();
+        return result;
     }
 }
