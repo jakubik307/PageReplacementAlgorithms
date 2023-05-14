@@ -43,8 +43,14 @@ public class Main {
         algorithm = new LRU();
         algorithm.simulate(queue, frames, thrashingThreshold);
 
+        //ALRU
+        algorithm = new ALRU();
+        algorithm.simulate(queue, frames, thrashingThreshold);
+
         //RAND
         algorithm = new RAND();
         algorithm.simulate(queue, frames, thrashingThreshold);
     }
+
+    //TODO powiedzieć o błędzie we wskazówkach do ALRU
 }

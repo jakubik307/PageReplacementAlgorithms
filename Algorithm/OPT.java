@@ -18,17 +18,16 @@ public class OPT extends Algorithm {
             Request request = queue.get(i);
             if (!memory.contains(request)) {
                 if (memory.size() == frames) {
-                    memory.remove(findOptimal(memory, i));
+                    memory.remove(findOptimal(i));
                 }
                 memory.add(request);
                 pageFaults++;
             }
-
         }
         printResults();
     }
 
-    private int findOptimal(ArrayList<Request> memory, int startIndex) {
+    private int findOptimal(int startIndex) {
         int[] arr = new int[memory.size()];
 
         for (int i = 0; i < memory.size(); i++) {
