@@ -1,6 +1,6 @@
 package Algorithm;
 
-import Request.Request;
+import Requests.Request;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,7 @@ public class OPT extends Algorithm {
     public void simulate(ArrayList<Request> originalQueue, int frames, int thrashingThreshold) {
         reset();
         deepCopyQueue(originalQueue);
+        pageFaultsHistory = new boolean[originalQueue.size()];
 
         memory = new ArrayList<>(frames);
 
@@ -22,9 +23,10 @@ public class OPT extends Algorithm {
                 }
                 memory.add(request);
                 pageFaults++;
+                pageFaultsHistory[i] = true;
             }
         }
-        printResults();
+        printResults(thrashingThreshold);
     }
 
     private int findOptimal(int startIndex) {

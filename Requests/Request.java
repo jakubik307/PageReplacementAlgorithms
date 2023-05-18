@@ -1,5 +1,6 @@
-package Request;
+package Requests;
 
+@SuppressWarnings("unused")
 public class Request {
     int page;
     int id;
