@@ -1,4 +1,4 @@
-package Request;
+package Requests;
 
 public class Request {
     int page;

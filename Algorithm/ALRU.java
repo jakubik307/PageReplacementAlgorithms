@@ -1,6 +1,6 @@
 package Algorithm;
 
-import Request.Request;
+import Requests.Request;
 
 import java.util.ArrayList;
 
@@ -12,12 +12,14 @@ public class ALRU extends Algorithm {
     public void simulate(ArrayList<Request> originalQueue, int frames, int thrashingThreshold) {
         reset();
         deepCopyQueue(originalQueue);
+        pageFaultsHistory = new boolean[originalQueue.size()];
 
         memory = new Request[frames];
         secondChance = new boolean[frames];
         int pointer = 0;
 
-        for (Request request : queue) {
+        for (int i = 0; i < queue.size(); i++) {
+            Request request = queue.get(i);
             if (!isPageInMemory(request)) {
                 if (pagesInMemory() == frames) {
                     int removalIndex = getRemovalIndex(pointer, frames);
@@ -30,10 +32,11 @@ public class ALRU extends Algorithm {
                     pointer++;
                 }
                 pageFaults++;
+                pageFaultsHistory[i] = true;
             } else giveSecondChance(request);
         }
 
-        printResults();
+        printResults(thrashingThreshold);
     }
 
     private int getRemovalIndex(int startingPoint, int frames) {
