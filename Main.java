@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         //Parameters
-        int frames = 5;
+        int frames = 8;
         int thrashingThreshold = 5;
-        ArrayList<Request> queue = Generator.generateRequestQueue(100000, 3, 5, 1, 1000, 10);
+        ArrayList<Request> queue = Generator.generateRequestQueue(10000000, 5, 8,
+                1, 100, 20);
         test(queue, frames, thrashingThreshold);
     }
 
@@ -35,6 +36,4 @@ public class Main {
         algorithm = new RAND();
         algorithm.simulate(queue, frames, thrashingThreshold);
     }
-
-    //TODO powiedzieć o błędzie we wskazówkach do ALRU
 }

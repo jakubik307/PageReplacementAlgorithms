@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings("unused")
 public class Generator {
 
     public static ArrayList<Request> generateRequestQueue(int simulationSize, int minLocalitySize, int maxLocalitySize, int minLocalityLength, int maxLocalityLength, int pages) throws IllegalArgumentException {

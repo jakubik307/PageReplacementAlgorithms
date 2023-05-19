@@ -48,7 +48,6 @@ public abstract class Algorithm {
                 top = 0;
             }
         }
-
         return result;
     }
 }
